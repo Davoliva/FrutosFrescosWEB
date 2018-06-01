@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="CARRITO">
+    <Key>
+      <PropertyRef Name="CAR_ID" />
+    </Key>
+    <Property Name="CAR_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CAR_FECHA" Type="DateTime" Nullable="false" />
+    <Property Name="CAR_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FORMA_PAGO_FOPA_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CAR_VALOR_NETO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CAR_VALOR_IVA" Type="Decimal" Precision="2" Scale="2" Nullable="false" />
+    <Property Name="CAR_VALOR_DESC" Type="Decimal" Precision="2" Scale="2" Nullable="false" />
+    <Property Name="CAR_VALOR_BRUTO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CLIENTE_CLI_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.CARRITO_CLIENTE_FK" FromRole="CARRITO" ToRole="CLIENTE" />
+    <NavigationProperty Name="FORMA_PAGO" Relationship="Self.CARRITO_FORMA_PAGO_FK" FromRole="CARRITO" ToRole="FORMA_PAGO" />
+    <NavigationProperty Name="DETALLE_CARRITO" Relationship="Self.DETALLE_CARRITO_CARRITO_FK" FromRole="CARRITO" ToRole="DETALLE_CARRITO" />
+    <NavigationProperty Name="ENTREGA" Relationship="Self.ENTREGA_CARRITO_FK" FromRole="CARRITO" ToRole="ENTREGA" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="CLI_ID" />
+    </Key>
+    <Property Name="CLI_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CLI_RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CLI_PRIMER_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CLI_SEGUNDO_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CLI_PRIMER_APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CLI_SEGUNDO_APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CLI_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CLI_FECHA_NACIMIENTO" Type="DateTime" Nullable="false" />
+    <Property Name="CLI_FECHA_REGISTRO" Type="DateTime" Nullable="false" />
+    <Property Name="CLI_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CLI_DIRECCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COMUNA_COM_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="CARRITO" Relationship="Self.CARRITO_CLIENTE_FK" FromRole="CLIENTE" ToRole="CARRITO" />
+    <NavigationProperty Name="COMUNA" Relationship="Self.CLIENTE_COMUNA_FK" FromRole="CLIENTE" ToRole="COMUNA" />
+  </EntityType>
+  <EntityType Name="COMUNA">
+    <Key>
+      <PropertyRef Name="COM_ID" />
+    </Key>
+    <Property Name="COM_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COM_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROVINCIA_PROVI_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.CLIENTE_COMUNA_FK" FromRole="COMUNA" ToRole="CLIENTE" />
+    <NavigationProperty Name="PROVINCIA" Relationship="Self.COMUNA_PROVINCIA_FK" FromRole="COMUNA" ToRole="PROVINCIA" />
+    <NavigationProperty Name="ENTREGA" Relationship="Self.ENTREGA_COMUNA_FK" FromRole="COMUNA" ToRole="ENTREGA" />
+    <NavigationProperty Name="ENTREGA1" Relationship="Self.ENTREGA_COMUNA_FKV2" FromRole="COMUNA" ToRole="ENTREGA" />
+    <NavigationProperty Name="PRODUCTOR" Relationship="Self.PRODUCTOR_COMUNA_FK" FromRole="COMUNA" ToRole="PRODUCTOR" />
+  </EntityType>
+  <EntityType Name="DETALLE_CARRITO">
+    <Key>
+      <PropertyRef Name="CARRITO_CAR_ID" />
+      <PropertyRef Name="PRODUCTO_PROD_ID" />
+    </Key>
+    <Property Name="DCARR_LINEA" Type="Int16" Nullable="false" />
+    <Property Name="CARRITO_CAR_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DCARR_PRECIO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="DCARR_CANTIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRODUCTO_PROD_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="CARRITO" Relationship="Self.DETALLE_CARRITO_CARRITO_FK" FromRole="DETALLE_CARRITO" ToRole="CARRITO" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.DETALLE_CARRITO_PRODUCTO_FK" FromRole="DETALLE_CARRITO" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="ENTREGA">
+    <Key>
+      <PropertyRef Name="ENT_ID" />
+    </Key>
+    <Property Name="ENT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENT_FECHA_SALIDA" Type="DateTime" Nullable="false" />
+    <Property Name="ENT_FECHA_ENTREGA_ESTIMADA" Type="DateTime" Nullable="false" />
+    <Property Name="ENT_FECHA_ENTREGA_REAL" Type="DateTime" />
+    <Property Name="ENT_HORA_ENTREGA" Type="DateTime" />
+    <Property Name="ESTADO_ENTREGA_EST_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COMUNA_COM_ID2" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COMUNA_COM_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENT_DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CARRITO_CAR_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENT_DIRECCION_ORIGEN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ENT_DIRECCION_DESTINO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CARRITO" Relationship="Self.ENTREGA_CARRITO_FK" FromRole="ENTREGA" ToRole="CARRITO" />
+    <NavigationProperty Name="COMUNA" Relationship="Self.ENTREGA_COMUNA_FK" FromRole="ENTREGA" ToRole="COMUNA" />
+    <NavigationProperty Name="COMUNA1" Relationship="Self.ENTREGA_COMUNA_FKV2" FromRole="ENTREGA" ToRole="COMUNA" />
+    <NavigationProperty Name="ESTADO_ENTREGA" Relationship="Self.ENTREGA_ESTADO_ENTREGA_FK" FromRole="ENTREGA" ToRole="ESTADO_ENTREGA" />
+  </EntityType>
+  <EntityType Name="ESTADO_ENTREGA">
+    <Key>
+      <PropertyRef Name="EST_ID" />
+    </Key>
+    <Property Name="EST_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="EST_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ENTREGA" Relationship="Self.ENTREGA_ESTADO_ENTREGA_FK" FromRole="ESTADO_ENTREGA" ToRole="ENTREGA" />
+  </EntityType>
+  <EntityType Name="FORMA_PAGO">
+    <Key>
+      <PropertyRef Name="FOPA_ID" />
+    </Key>
+    <Property Name="FOPA_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FOPA_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FOPA_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CARRITO" Relationship="Self.CARRITO_FORMA_PAGO_FK" FromRole="FORMA_PAGO" ToRole="CARRITO" />
+  </EntityType>
+  <EntityType Name="GEOLOCALIZACION">
+    <Key>
+      <PropertyRef Name="GEO_ID" />
+    </Key>
+    <Property Name="GEO_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="GEO_LATITUD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GEO_LONGITUD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRODUCTOR_PROV_RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PRODUCTOR" Relationship="Self.GEOLOCALIZACION_PRODUCTOR_FK" FromRole="GEOLOCALIZACION" ToRole="PRODUCTOR" />
+  </EntityType>
+  <EntityType Name="IMAGEN">
+    <Key>
+      <PropertyRef Name="IMG_ID" />
+    </Key>
+    <Property Name="IMG_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IMG_URL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRODUCTO_PROD_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPO_IMAGEN_TM_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.IMAGEN_PRODUCTO_FK" FromRole="IMAGEN" ToRole="PRODUCTO" />
+    <NavigationProperty Name="TIPO_IMAGEN" Relationship="Self.IMAGEN_TIPO_IMAGEN_FK" FromRole="IMAGEN" ToRole="TIPO_IMAGEN" />
+  </EntityType>
+  <EntityType Name="PERFIL">
+    <Key>
+      <PropertyRef Name="PER_ID" />
+    </Key>
+    <Property Name="PER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PER_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_PERFIL_FK" FromRole="PERFIL" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="PROD_ID" />
+    </Key>
+    <Property Name="PROD_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRO_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROD_CANTIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROD_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROD_PRECIO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TIPO_PRODUCTO_TP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRODUCTOR_PROV_RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DETALLE_CARRITO" Relationship="Self.DETALLE_CARRITO_PRODUCTO_FK" FromRole="PRODUCTO" ToRole="DETALLE_CARRITO" />
+    <NavigationProperty Name="IMAGEN" Relationship="Self.IMAGEN_PRODUCTO_FK" FromRole="PRODUCTO" ToRole="IMAGEN" />
+    <NavigationProperty Name="PRODUCTOR" Relationship="Self.PRODUCTO_PRODUCTOR_FK" FromRole="PRODUCTO" ToRole="PRODUCTOR" />
+    <NavigationProperty Name="TIPO_PRODUCTO" Relationship="Model.PRODUCTO_TIPO_PRODUCTO_FK" FromRole="PRODUCTO" ToRole="TIPO_PRODUCTO" />
+  </EntityType>
+  <EntityType Name="PRODUCTOR">
+    <Key>
+      <PropertyRef Name="PROV_RUT" />
+    </Key>
+    <Property Name="PROV_RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROV_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROV_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COMUNA_COM_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROV_FECHA_REGISTRO" Type="DateTime" Nullable="false" />
+    <Property Name="PROV_DIRECCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROV_VALORACION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROV_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="COMUNA" Relationship="Self.PRODUCTOR_COMUNA_FK" FromRole="PRODUCTOR" ToRole="COMUNA" />
+    <NavigationProperty Name="GEOLOCALIZACION" Relationship="Self.GEOLOCALIZACION_PRODUCTOR_FK" FromRole="PRODUCTOR" ToRole="GEOLOCALIZACION" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.PRODUCTO_PRODUCTOR_FK" FromRole="PRODUCTOR" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="PROVINCIA">
+    <Key>
+      <PropertyRef Name="PROVI_ID" />
+    </Key>
+    <Property Name="PROVI_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROVI_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="REGION_REG_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="COMUNA" Relationship="Self.COMUNA_PROVINCIA_FK" FromRole="PROVINCIA" ToRole="COMUNA" />
+    <NavigationProperty Name="REGION" Relationship="Self.PROVINCIA_REGION_FK" FromRole="PROVINCIA" ToRole="REGION" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="REG_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PROVINCIA" Relationship="Self.PROVINCIA_REGION_FK" FromRole="REGION" ToRole="PROVINCIA" />
+  </EntityType>
+  <EntityType Name="TIPO_IMAGEN">
+    <Key>
+      <PropertyRef Name="TM_ID" />
+    </Key>
+    <Property Name="TM_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TM_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="IMAGEN" Relationship="Self.IMAGEN_TIPO_IMAGEN_FK" FromRole="TIPO_IMAGEN" ToRole="IMAGEN" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="USU_EMAIL" />
+    </Key>
+    <Property Name="USU_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USU_PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PERFIL_PER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="PERFIL" Relationship="Self.USUARIO_PERFIL_FK" FromRole="USUARIO" ToRole="PERFIL" />
+  </EntityType>
+  <Association Name="CARRITO_CLIENTE_FK">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="CLI_ID" />
+      </Principal>
+      <Dependent Role="CARRITO">
+        <PropertyRef Name="CLIENTE_CLI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CARRITO_FORMA_PAGO_FK">
+    <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="1" />
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMA_PAGO">
+        <PropertyRef Name="FOPA_ID" />
+      </Principal>
+      <Dependent Role="CARRITO">
+        <PropertyRef Name="FORMA_PAGO_FOPA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLE_CARRITO_CARRITO_FK">
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="1" />
+    <End Role="DETALLE_CARRITO" Type="Self.DETALLE_CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARRITO">
+        <PropertyRef Name="CAR_ID" />
+      </Principal>
+      <Dependent Role="DETALLE_CARRITO">
+        <PropertyRef Name="CARRITO_CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_CARRITO_FK">
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARRITO">
+        <PropertyRef Name="CAR_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="CARRITO_CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLIENTE_COMUNA_FK">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="COMUNA_COM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="COMUNA_PROVINCIA_FK">
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIA">
+        <PropertyRef Name="PROVI_ID" />
+      </Principal>
+      <Dependent Role="COMUNA">
+        <PropertyRef Name="PROVINCIA_PROVI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_COMUNA_FK">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="COMUNA_COM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_COMUNA_FKV2">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="COMUNA_COM_ID2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCTOR_COMUNA_FK">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTOR">
+        <PropertyRef Name="COMUNA_COM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLE_CARRITO_PRODUCTO_FK">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="DETALLE_CARRITO" Type="Self.DETALLE_CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="DETALLE_CARRITO">
+        <PropertyRef Name="PRODUCTO_PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_ESTADO_ENTREGA_FK">
+    <End Role="ESTADO_ENTREGA" Type="Self.ESTADO_ENTREGA" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_ENTREGA">
+        <PropertyRef Name="EST_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="ESTADO_ENTREGA_EST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GEOLOCALIZACION_PRODUCTOR_FK">
+    <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+    <End Role="GEOLOCALIZACION" Type="Self.GEOLOCALIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOR">
+        <PropertyRef Name="PROV_RUT" />
+      </Principal>
+      <Dependent Role="GEOLOCALIZACION">
+        <PropertyRef Name="PRODUCTOR_PROV_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IMAGEN_PRODUCTO_FK">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="IMAGEN" Type="Self.IMAGEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="IMAGEN">
+        <PropertyRef Name="PRODUCTO_PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IMAGEN_TIPO_IMAGEN_FK">
+    <End Role="TIPO_IMAGEN" Type="Self.TIPO_IMAGEN" Multiplicity="1" />
+    <End Role="IMAGEN" Type="Self.IMAGEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_IMAGEN">
+        <PropertyRef Name="TM_ID" />
+      </Principal>
+      <Dependent Role="IMAGEN">
+        <PropertyRef Name="TIPO_IMAGEN_TM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USUARIO_PERFIL_FK">
+    <End Role="PERFIL" Type="Self.PERFIL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERFIL">
+        <PropertyRef Name="PER_ID" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="PERFIL_PER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCTO_PRODUCTOR_FK">
+    <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOR">
+        <PropertyRef Name="PROV_RUT" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="PRODUCTOR_PROV_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PROVINCIA_REGION_FK">
+    <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="REG_ID" />
+      </Principal>
+      <Dependent Role="PROVINCIA">
+        <PropertyRef Name="REGION_REG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CARRITO" EntityType="Self.CARRITO" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+    <EntitySet Name="COMUNA" EntityType="Self.COMUNA" />
+    <EntitySet Name="DETALLE_CARRITO" EntityType="Self.DETALLE_CARRITO" />
+    <EntitySet Name="ENTREGA" EntityType="Self.ENTREGA" />
+    <EntitySet Name="ESTADO_ENTREGA" EntityType="Self.ESTADO_ENTREGA" />
+    <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" />
+    <EntitySet Name="GEOLOCALIZACION" EntityType="Self.GEOLOCALIZACION" />
+    <EntitySet Name="IMAGEN" EntityType="Self.IMAGEN" />
+    <EntitySet Name="PERFIL" EntityType="Self.PERFIL" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+    <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" />
+    <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" />
+    <EntitySet Name="REGION" EntityType="Self.REGION" />
+    <EntitySet Name="TIPO_IMAGEN" EntityType="Self.TIPO_IMAGEN" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="CARRITO_CLIENTE_FK" Association="Self.CARRITO_CLIENTE_FK">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="CARRITO" EntitySet="CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="CARRITO_FORMA_PAGO_FK" Association="Self.CARRITO_FORMA_PAGO_FK">
+      <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
+      <End Role="CARRITO" EntitySet="CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLE_CARRITO_CARRITO_FK" Association="Self.DETALLE_CARRITO_CARRITO_FK">
+      <End Role="CARRITO" EntitySet="CARRITO" />
+      <End Role="DETALLE_CARRITO" EntitySet="DETALLE_CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_CARRITO_FK" Association="Self.ENTREGA_CARRITO_FK">
+      <End Role="CARRITO" EntitySet="CARRITO" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="CLIENTE_COMUNA_FK" Association="Self.CLIENTE_COMUNA_FK">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="COMUNA_PROVINCIA_FK" Association="Self.COMUNA_PROVINCIA_FK">
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+      <End Role="COMUNA" EntitySet="COMUNA" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_COMUNA_FK" Association="Self.ENTREGA_COMUNA_FK">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_COMUNA_FKV2" Association="Self.ENTREGA_COMUNA_FKV2">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCTOR_COMUNA_FK" Association="Self.PRODUCTOR_COMUNA_FK">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLE_CARRITO_PRODUCTO_FK" Association="Self.DETALLE_CARRITO_PRODUCTO_FK">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="DETALLE_CARRITO" EntitySet="DETALLE_CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_ESTADO_ENTREGA_FK" Association="Self.ENTREGA_ESTADO_ENTREGA_FK">
+      <End Role="ESTADO_ENTREGA" EntitySet="ESTADO_ENTREGA" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="GEOLOCALIZACION_PRODUCTOR_FK" Association="Self.GEOLOCALIZACION_PRODUCTOR_FK">
+      <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+      <End Role="GEOLOCALIZACION" EntitySet="GEOLOCALIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="IMAGEN_PRODUCTO_FK" Association="Self.IMAGEN_PRODUCTO_FK">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="IMAGEN" EntitySet="IMAGEN" />
+    </AssociationSet>
+    <AssociationSet Name="IMAGEN_TIPO_IMAGEN_FK" Association="Self.IMAGEN_TIPO_IMAGEN_FK">
+      <End Role="TIPO_IMAGEN" EntitySet="TIPO_IMAGEN" />
+      <End Role="IMAGEN" EntitySet="IMAGEN" />
+    </AssociationSet>
+    <AssociationSet Name="USUARIO_PERFIL_FK" Association="Self.USUARIO_PERFIL_FK">
+      <End Role="PERFIL" EntitySet="PERFIL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCTO_PRODUCTOR_FK" Association="Self.PRODUCTO_PRODUCTOR_FK">
+      <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="PROVINCIA_REGION_FK" Association="Self.PROVINCIA_REGION_FK">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+    </AssociationSet>
+    <EntitySet Name="TIPO_PRODUCTO" EntityType="Model.TIPO_PRODUCTO" />
+    <AssociationSet Name="PRODUCTO_TIPO_PRODUCTO_FK" Association="Model.PRODUCTO_TIPO_PRODUCTO_FK">
+      <End Role="TIPO_PRODUCTO" EntitySet="TIPO_PRODUCTO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TIPO_PRODUCTO">
+    <Key>
+      <PropertyRef Name="TP_ID" />
+    </Key>
+    <Property Name="TP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="TP_NOMBRE" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Model.PRODUCTO_TIPO_PRODUCTO_FK" FromRole="TIPO_PRODUCTO" ToRole="PRODUCTO" />
+  </EntityType>
+  <Association Name="PRODUCTO_TIPO_PRODUCTO_FK">
+    <End Type="Model.TIPO_PRODUCTO" Role="TIPO_PRODUCTO" Multiplicity="1" />
+    <End Type="Model.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_PRODUCTO">
+        <PropertyRef Name="TP_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="TIPO_PRODUCTO_TP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

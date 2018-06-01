@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3899684371e947c9b8848ae634531eef" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.CARRITO" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COMUNA" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DETALLE_CARRITO" Width="1.5" PointX="15" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ENTREGA" Width="1.5" PointX="12" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ESTADO_ENTREGA" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FORMA_PAGO" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GEOLOCALIZACION" Width="1.5" PointX="9.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.IMAGEN" Width="1.5" PointX="15" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PERFIL" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTO" Width="1.5" PointX="12.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTOR" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PROVINCIA" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.REGION" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO_IMAGEN" Width="1.5" PointX="12.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.CARRITO_CLIENTE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CARRITO_FORMA_PAGO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DETALLE_CARRITO_CARRITO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENTREGA_CARRITO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CLIENTE_COMUNA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.COMUNA_PROVINCIA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENTREGA_COMUNA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENTREGA_COMUNA_FKV2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTOR_COMUNA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DETALLE_CARRITO_PRODUCTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENTREGA_ESTADO_ENTREGA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.GEOLOCALIZACION_PRODUCTOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.IMAGEN_PRODUCTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.IMAGEN_TIPO_IMAGEN_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIO_PERFIL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTO_PRODUCTOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PROVINCIA_REGION_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.TIPO_PRODUCTO" Width="1.5" PointX="1.875" PointY="3.875" />
+        <AssociationConnector Association="Model.PRODUCTO_TIPO_PRODUCTO_FK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

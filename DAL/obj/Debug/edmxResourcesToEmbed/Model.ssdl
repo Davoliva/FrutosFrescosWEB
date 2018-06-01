@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="CARRITO">
+    <Key>
+      <PropertyRef Name="CAR_ID" />
+    </Key>
+    <Property Name="CAR_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CAR_FECHA" Type="date" Nullable="false" />
+    <Property Name="CAR_ESTADO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="FORMA_PAGO_FOPA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CAR_VALOR_NETO" Type="number" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CAR_VALOR_IVA" Type="number" Precision="2" Scale="2" Nullable="false" />
+    <Property Name="CAR_VALOR_DESC" Type="number" Precision="2" Scale="2" Nullable="false" />
+    <Property Name="CAR_VALOR_BRUTO" Type="number" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CLIENTE_CLI_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="CLI_ID" />
+    </Key>
+    <Property Name="CLI_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CLI_RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+    <Property Name="CLI_PRIMER_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="CLI_SEGUNDO_NOMBRE" Type="varchar2" MaxLength="255" />
+    <Property Name="CLI_PRIMER_APELLIDO" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="CLI_SEGUNDO_APELLIDO" Type="varchar2" MaxLength="255" />
+    <Property Name="CLI_EMAIL" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="CLI_FECHA_NACIMIENTO" Type="date" Nullable="false" />
+    <Property Name="CLI_FECHA_REGISTRO" Type="date" Nullable="false" />
+    <Property Name="CLI_ESTADO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CLI_DIRECCION" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="COMUNA_COM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COMUNA">
+    <Key>
+      <PropertyRef Name="COM_ID" />
+    </Key>
+    <Property Name="COM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COM_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PROVINCIA_PROVI_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DETALLE_CARRITO">
+    <Key>
+      <PropertyRef Name="CARRITO_CAR_ID" />
+      <PropertyRef Name="PRODUCTO_PROD_ID" />
+    </Key>
+    <Property Name="DCARR_LINEA" Type="number" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="CARRITO_CAR_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DCARR_PRECIO" Type="number" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="DCARR_CANTIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRODUCTO_PROD_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ENTREGA">
+    <Key>
+      <PropertyRef Name="ENT_ID" />
+    </Key>
+    <Property Name="ENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENT_FECHA_SALIDA" Type="date" Nullable="false" />
+    <Property Name="ENT_FECHA_ENTREGA_ESTIMADA" Type="date" Nullable="false" />
+    <Property Name="ENT_FECHA_ENTREGA_REAL" Type="date" />
+    <Property Name="ENT_HORA_ENTREGA" Type="date" />
+    <Property Name="ESTADO_ENTREGA_EST_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COMUNA_COM_ID2" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="COMUNA_COM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENT_DESCRIPCION" Type="clob" Nullable="false" />
+    <Property Name="CARRITO_CAR_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ENT_DIRECCION_ORIGEN" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="ENT_DIRECCION_DESTINO" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ESTADO_ENTREGA">
+    <Key>
+      <PropertyRef Name="EST_ID" />
+    </Key>
+    <Property Name="EST_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="EST_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FORMA_PAGO">
+    <Key>
+      <PropertyRef Name="FOPA_ID" />
+    </Key>
+    <Property Name="FOPA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FOPA_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="FOPA_ESTADO" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GEOLOCALIZACION">
+    <Key>
+      <PropertyRef Name="GEO_ID" />
+    </Key>
+    <Property Name="GEO_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="GEO_LATITUD" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="GEO_LONGITUD" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PRODUCTOR_PROV_RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMAGEN">
+    <Key>
+      <PropertyRef Name="IMG_ID" />
+    </Key>
+    <Property Name="IMG_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IMG_URL" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PRODUCTO_PROD_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPO_IMAGEN_TM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERFIL">
+    <Key>
+      <PropertyRef Name="PER_ID" />
+    </Key>
+    <Property Name="PER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PER_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="PROD_ID" />
+    </Key>
+    <Property Name="PROD_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRO_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PROD_CANTIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROD_DESCRIPCION" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PROD_PRECIO" Type="number" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TIPO_PRODUCTO_TP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRODUCTOR_PROV_RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRODUCTOR">
+    <Key>
+      <PropertyRef Name="PROV_RUT" />
+    </Key>
+    <Property Name="PROV_RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+    <Property Name="PROV_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PROV_EMAIL" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="COMUNA_COM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROV_FECHA_REGISTRO" Type="date" Nullable="false" />
+    <Property Name="PROV_DIRECCION" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PROV_VALORACION" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROV_ESTADO" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROVINCIA">
+    <Key>
+      <PropertyRef Name="PROVI_ID" />
+    </Key>
+    <Property Name="PROVI_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROVI_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="REGION_REG_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="REG_ID" />
+    </Key>
+    <Property Name="REG_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="REG_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPO_IMAGEN">
+    <Key>
+      <PropertyRef Name="TM_ID" />
+    </Key>
+    <Property Name="TM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TM_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPO_PRODUCTO">
+    <Key>
+      <PropertyRef Name="TP_ID" />
+    </Key>
+    <Property Name="TP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TP_NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="USU_EMAIL" />
+    </Key>
+    <Property Name="USU_EMAIL" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="USU_PASSWORD" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PERFIL_PER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="CARRITO_CLIENTE_FK">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="CLI_ID" />
+      </Principal>
+      <Dependent Role="CARRITO">
+        <PropertyRef Name="CLIENTE_CLI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CARRITO_FORMA_PAGO_FK">
+    <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="1" />
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMA_PAGO">
+        <PropertyRef Name="FOPA_ID" />
+      </Principal>
+      <Dependent Role="CARRITO">
+        <PropertyRef Name="FORMA_PAGO_FOPA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLIENTE_COMUNA_FK">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="COMUNA_COM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="COMUNA_PROVINCIA_FK">
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIA">
+        <PropertyRef Name="PROVI_ID" />
+      </Principal>
+      <Dependent Role="COMUNA">
+        <PropertyRef Name="PROVINCIA_PROVI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLE_CARRITO_CARRITO_FK">
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="1" />
+    <End Role="DETALLE_CARRITO" Type="Self.DETALLE_CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARRITO">
+        <PropertyRef Name="CAR_ID" />
+      </Principal>
+      <Dependent Role="DETALLE_CARRITO">
+        <PropertyRef Name="CARRITO_CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLE_CARRITO_PRODUCTO_FK">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="DETALLE_CARRITO" Type="Self.DETALLE_CARRITO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="DETALLE_CARRITO">
+        <PropertyRef Name="PRODUCTO_PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_CARRITO_FK">
+    <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARRITO">
+        <PropertyRef Name="CAR_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="CARRITO_CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_COMUNA_FK">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="COMUNA_COM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_COMUNA_FKV2">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="COMUNA_COM_ID2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ENTREGA_ESTADO_ENTREGA_FK">
+    <End Role="ESTADO_ENTREGA" Type="Self.ESTADO_ENTREGA" Multiplicity="1" />
+    <End Role="ENTREGA" Type="Self.ENTREGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_ENTREGA">
+        <PropertyRef Name="EST_ID" />
+      </Principal>
+      <Dependent Role="ENTREGA">
+        <PropertyRef Name="ESTADO_ENTREGA_EST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GEOLOCALIZACION_PRODUCTOR_FK">
+    <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+    <End Role="GEOLOCALIZACION" Type="Self.GEOLOCALIZACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOR">
+        <PropertyRef Name="PROV_RUT" />
+      </Principal>
+      <Dependent Role="GEOLOCALIZACION">
+        <PropertyRef Name="PRODUCTOR_PROV_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IMAGEN_PRODUCTO_FK">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="IMAGEN" Type="Self.IMAGEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="IMAGEN">
+        <PropertyRef Name="PRODUCTO_PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IMAGEN_TIPO_IMAGEN_FK">
+    <End Role="TIPO_IMAGEN" Type="Self.TIPO_IMAGEN" Multiplicity="1" />
+    <End Role="IMAGEN" Type="Self.IMAGEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_IMAGEN">
+        <PropertyRef Name="TM_ID" />
+      </Principal>
+      <Dependent Role="IMAGEN">
+        <PropertyRef Name="TIPO_IMAGEN_TM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCTO_PRODUCTOR_FK">
+    <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOR">
+        <PropertyRef Name="PROV_RUT" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="PRODUCTOR_PROV_RUT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCTO_TIPO_PRODUCTO_FK">
+    <End Role="TIPO_PRODUCTO" Type="Self.TIPO_PRODUCTO" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_PRODUCTO">
+        <PropertyRef Name="TP_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="TIPO_PRODUCTO_TP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCTOR_COMUNA_FK">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="COM_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTOR">
+        <PropertyRef Name="COMUNA_COM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PROVINCIA_REGION_FK">
+    <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="REG_ID" />
+      </Principal>
+      <Dependent Role="PROVINCIA">
+        <PropertyRef Name="REGION_REG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USUARIO_PERFIL_FK">
+    <End Role="PERFIL" Type="Self.PERFIL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERFIL">
+        <PropertyRef Name="PER_ID" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="PERFIL_PER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="DETALLE_CARRITO" EntityType="Self.DETALLE_CARRITO" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="ENTREGA" EntityType="Self.ENTREGA" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="ESTADO_ENTREGA" EntityType="Self.ESTADO_ENTREGA" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="GEOLOCALIZACION" EntityType="Self.GEOLOCALIZACION" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="IMAGEN" EntityType="Self.IMAGEN" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="REGION" EntityType="Self.REGION" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="TIPO_IMAGEN" EntityType="Self.TIPO_IMAGEN" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="TIPO_PRODUCTO" EntityType="Self.TIPO_PRODUCTO" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="PORTAFOLIO_2016" store:Type="Tables" />
+    <AssociationSet Name="CARRITO_CLIENTE_FK" Association="Self.CARRITO_CLIENTE_FK">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="CARRITO" EntitySet="CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="CARRITO_FORMA_PAGO_FK" Association="Self.CARRITO_FORMA_PAGO_FK">
+      <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
+      <End Role="CARRITO" EntitySet="CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="CLIENTE_COMUNA_FK" Association="Self.CLIENTE_COMUNA_FK">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="COMUNA_PROVINCIA_FK" Association="Self.COMUNA_PROVINCIA_FK">
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+      <End Role="COMUNA" EntitySet="COMUNA" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLE_CARRITO_CARRITO_FK" Association="Self.DETALLE_CARRITO_CARRITO_FK">
+      <End Role="CARRITO" EntitySet="CARRITO" />
+      <End Role="DETALLE_CARRITO" EntitySet="DETALLE_CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLE_CARRITO_PRODUCTO_FK" Association="Self.DETALLE_CARRITO_PRODUCTO_FK">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="DETALLE_CARRITO" EntitySet="DETALLE_CARRITO" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_CARRITO_FK" Association="Self.ENTREGA_CARRITO_FK">
+      <End Role="CARRITO" EntitySet="CARRITO" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_COMUNA_FK" Association="Self.ENTREGA_COMUNA_FK">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_COMUNA_FKV2" Association="Self.ENTREGA_COMUNA_FKV2">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="ENTREGA_ESTADO_ENTREGA_FK" Association="Self.ENTREGA_ESTADO_ENTREGA_FK">
+      <End Role="ESTADO_ENTREGA" EntitySet="ESTADO_ENTREGA" />
+      <End Role="ENTREGA" EntitySet="ENTREGA" />
+    </AssociationSet>
+    <AssociationSet Name="GEOLOCALIZACION_PRODUCTOR_FK" Association="Self.GEOLOCALIZACION_PRODUCTOR_FK">
+      <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+      <End Role="GEOLOCALIZACION" EntitySet="GEOLOCALIZACION" />
+    </AssociationSet>
+    <AssociationSet Name="IMAGEN_PRODUCTO_FK" Association="Self.IMAGEN_PRODUCTO_FK">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="IMAGEN" EntitySet="IMAGEN" />
+    </AssociationSet>
+    <AssociationSet Name="IMAGEN_TIPO_IMAGEN_FK" Association="Self.IMAGEN_TIPO_IMAGEN_FK">
+      <End Role="TIPO_IMAGEN" EntitySet="TIPO_IMAGEN" />
+      <End Role="IMAGEN" EntitySet="IMAGEN" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCTO_PRODUCTOR_FK" Association="Self.PRODUCTO_PRODUCTOR_FK">
+      <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCTO_TIPO_PRODUCTO_FK" Association="Self.PRODUCTO_TIPO_PRODUCTO_FK">
+      <End Role="TIPO_PRODUCTO" EntitySet="TIPO_PRODUCTO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCTOR_COMUNA_FK" Association="Self.PRODUCTOR_COMUNA_FK">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+    </AssociationSet>
+    <AssociationSet Name="PROVINCIA_REGION_FK" Association="Self.PROVINCIA_REGION_FK">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+    </AssociationSet>
+    <AssociationSet Name="USUARIO_PERFIL_FK" Association="Self.USUARIO_PERFIL_FK">
+      <End Role="PERFIL" EntitySet="PERFIL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

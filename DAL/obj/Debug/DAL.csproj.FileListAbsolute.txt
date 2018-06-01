@@ -1,0 +1,8 @@
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\bin\Debug\DAL.dll.config
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\bin\Debug\DAL.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\bin\Debug\DAL.pdb
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\bin\Debug\EntityFramework.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\bin\Debug\EntityFramework.xml
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\obj\Debug\DAL.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\DAL\obj\Debug\DAL.pdb

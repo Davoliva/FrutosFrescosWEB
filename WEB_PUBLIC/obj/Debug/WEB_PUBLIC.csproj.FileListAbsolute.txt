@@ -1,0 +1,6 @@
+C:\Users\Gustavo\Documents\Visual Studio 2015\Projects\PORTAFOLIO_2016\WEB_PUBLIC\bin\WEB_PUBLIC.dll.config
+C:\Users\Gustavo\Documents\Visual Studio 2015\Projects\PORTAFOLIO_2016\WEB_PUBLIC\bin\WEB_PUBLIC.dll
+C:\Users\Gustavo\Documents\Visual Studio 2015\Projects\PORTAFOLIO_2016\WEB_PUBLIC\bin\WEB_PUBLIC.pdb
+C:\Users\Gustavo\Documents\Visual Studio 2015\Projects\PORTAFOLIO_2016\WEB_PUBLIC\obj\Debug\WEB_PUBLIC.csprojResolveAssemblyReference.cache
+C:\Users\Gustavo\Documents\Visual Studio 2015\Projects\PORTAFOLIO_2016\WEB_PUBLIC\obj\Debug\WEB_PUBLIC.dll
+C:\Users\Gustavo\Documents\Visual Studio 2015\Projects\PORTAFOLIO_2016\WEB_PUBLIC\obj\Debug\WEB_PUBLIC.pdb

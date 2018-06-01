@@ -1,0 +1,12 @@
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\WEB.dll.config
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\WEB.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\WEB.pdb
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\BLL.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\DAL.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\EntityFramework.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\BLL.pdb
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\DAL.pdb
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\bin\EntityFramework.xml
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\obj\Debug\WEB.csprojResolveAssemblyReference.cache
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\obj\Debug\WEB.dll
+c:\users\gustavo\documents\visual studio 2015\Projects\PORTAFOLIO_2016\WEB\obj\Debug\WEB.pdb
